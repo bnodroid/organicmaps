@@ -499,8 +499,11 @@ void UpdateDialog::OnCountryChanged(CountryId const & countryId)
       UpdateRowWithCountryInfo(GetCountryIdByTreeItem(p));
 }
 
-void UpdateDialog::OnCountryDownloadProgress(CountryId const & countryId, downloader::Progress const & progress)
+void UpdateDialog::OnCountryDownloadProgress(CountryId const & countryId, storage::Progress const & snapshot)
 {
+  auto const progress = snapshot.GetCombined();
+  if (progress.m_bytesTotal == 0)
+    return;
   auto const items = GetTreeItemsByCountryId(countryId);
   for (auto const item : items)
     item->setText(KColumnIndexSize, QString("%1%").arg(progress.m_bytesDownloaded * 100 / progress.m_bytesTotal));
