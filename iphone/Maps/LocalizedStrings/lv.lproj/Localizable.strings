@@ -16,7 +16,7 @@
 /* Choose measurement on first launch alert - choose metric system button */
 "kilometres" = "Kilometri";
 
-/* Choose measurement on first launch alert - choose imperial system button */
+/* Imperial measurement option: 1 mile = 1609.344 m; Swedish/Norwegian "mil" = 10 km */
 "miles" = "Jūdzes";
 
 /* Update maps later button text */
@@ -157,7 +157,7 @@
 
 /********** Other translations **********/
 
-"share_bookmarks_email_body" = "Sveiki!\n\nPielikumā ir grāmatzīmes. Lūdzu, atveriet tās „Organic Maps“ lietotnē. Ja Jums tā nav instalēta, instalējiet to te: https://omaps.app/get?kmz\n\nBaudiet ceļošanu ar „Oranic Maps“!";
+"share_bookmarks_email_body" = "Sveiki!\n\nPielikumā ir grāmatzīmes. Lūdzu, atveriet tās „Organic Maps“ lietotnē. Ja Jums tā nav instalēta, instalējiet to te: https://omaps.app/get?kmz\n\nBaudiet ceļošanu ar „Organic Maps“!";
 
 /* message title of loading file */
 "load_kmz_title" = "Ielādē grāmatzīmes";
@@ -598,10 +598,20 @@
 
 /* abbreviation for kilometers per hour */
 "kilometers_per_hour" = "km/h";
+
+/* Short label for miles per hour (1 mile = 1609.344 m), placed after a number; e.g. mph or mi/h */
 "miles_per_hour" = "mph";
+
+/* Short label for hours (time unit), placed after a number */
 "hour" = "st.";
+
+/* Short label for minutes (time unit), placed after a number */
 "minute" = "min.";
+
+/* Short label for days (time unit), placed after a number */
 "day" = "d";
+
+/* Short label for seconds (time unit), placed after a number */
 "second" = "s";
 "placepage_more_button" = "Vairāk";
 "placepage_personal_notes_hint" = "Personīgi pieraksti (teksts vai HTML)";
@@ -686,6 +696,8 @@
 
 /* Map layers menu: toggle button for the satellite imagery layer */
 "button_layer_satellite" = "Satelīts";
+
+/* Subway map layer button; also the spoken name of the subway (metro, underground) transport type, read by screen readers before a line number on transit line badges. */
 "button_layer_subway" = "Metro";
 "layers_title" = "Kartes stili un slāņi";
 
@@ -734,7 +746,7 @@
 /* Cycling profile in routing options settings. */
 "routing_options_cycling" = "Ar velosipēdu";
 
-/* Walking profile in routing options settings. */
+/* Walking profile in routing options settings; also the label of a walking leg in transit route details. */
 "routing_options_walking" = "Kājām";
 
 /* Section heading for routing settings shared by every routing mode. */
@@ -847,7 +859,7 @@
 "location_services_disabled_on_device_2" = "2. Atlasiet „Privātums“";
 "location_services_disabled_on_device_3" = "3. Atlasiet atrašanās vietas pakalpojumus";
 "location_services_disabled_on_device_4" = "4. Ieslēdziet atrašanāš vietas noteikšanas pakalpojumus";
-"location_services_disabled_on_device_additional_message" = "Vai turpiniet izmantot „Organic Maps“ bez vietas";
+"location_services_disabled_on_device_additional_message" = "Vai turpiniet izmantot „Organic Maps“ bez atrašanās vietas noteikšanas";
 "placepage_call_button" = "Zvanīt";
 "placepage_bookmark_name_hint" = "Grāmatzīmes nosaukums";
 "placepage_delete_bookmark_button" = "Dzēst grāmatzīmi";
@@ -858,7 +870,7 @@
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Vai izslēgt pēdējā noietā vai nobrauktā maršuta ierakstīšanu?";
 "off_recent_track_background_button" = "Izslēgt";
-"recent_track_background_dialog_message" = "„Organic Maps“ fonā izmantos ierīces atrašanās vietas datus, lai reģistrētu pēdējo noieto vai nobraukto maršrutu.";
+"recent_track_background_dialog_message" = "„Organic Maps“ fonā izmanto ierīces atrašanās vietas datus, lai reģistrētu pēdējo noieto vai nobraukto maršrutu.";
 "general_settings" = "Pamata iestatījumi";
 
 /* "traffic" as in road congestion */
@@ -1158,10 +1170,10 @@
 /* abbreviation for kilometers */
 "km" = "km";
 
-/* abbreviation for mile(s) */
+/* Short label for miles (length unit, 1 mi = 1609.344 m), placed after a number */
 "mi" = "mi";
 
-/* A unit of measure */
+/* Short label for feet (1 ft = 0.3048 m), after numbers; local abbreviations and uninflected unit names are allowed */
 "ft" = "ft";
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */

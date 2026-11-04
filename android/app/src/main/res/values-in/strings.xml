@@ -15,7 +15,7 @@
     <string name="downloading">Sedang mengunduh…</string>
     <!-- Choose measurement on first launch alert - choose metric system button -->
     <string name="kilometres">Kilometer</string>
-    <!-- Choose measurement on first launch alert - choose imperial system button -->
+    <!-- Imperial measurement option: 1 mile = 1609.344 m; Swedish/Norwegian "mil" = 10 km -->
     <string name="miles">Mil</string>
     <!-- Update maps later button text -->
     <string name="later">Nanti</string>
@@ -343,6 +343,10 @@
     <!-- The message when user did not find anything in the search. -->
     <string name="search_not_found_query">Unduh wilayah tempat Anda mencari atau coba tambahkan nama kota/desa terdekat.</string>
     <string name="search_history_title">Riwayat Pencarian</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_title">Cadangan penanda dan jalur</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_description">Penanda dan jalur dapat disertakan dalam cadangan sistem Android jika pencadangan diaktifkan di perangkat ini dan tidak melebihi batas ukurannya.</string>
     <string name="search_history_text">Akses kueri pencarian terbaru dengan cepat.</string>
     <string name="clear_search">Bersihkan riwayat pencarian</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
@@ -472,10 +476,15 @@
     <string name="current_location_unknown_error_title">Lokasi saat ini tidak diketahui.</string>
     <!-- abbreviation for kilometers per hour -->
     <string name="kilometers_per_hour">km/j</string>
+    <!-- Short label for miles per hour (1 mile = 1609.344 m), placed after a number; e.g. mph or mi/h -->
     <string name="miles_per_hour">mpj</string>
+    <!-- Short label for hours (time unit), placed after a number -->
     <string name="hour">j</string>
+    <!-- Short label for minutes (time unit), placed after a number -->
     <string name="minute">mnt</string>
+    <!-- Short label for days (time unit), placed after a number -->
     <string name="day">hr</string>
+    <!-- Short label for seconds (time unit), placed after a number -->
     <string name="second">dtk</string>
     <string name="placepage_more_button">Lainnya</string>
     <!-- Toolbar title of the Edit Bookmark screen. -->
@@ -568,6 +577,10 @@
         <item quantity="other">%d file ditemukan. Anda akan melihatnya setelah konversi.</item>
     </plurals>
     <string name="restore">Mengembalikan</string>
+    <!-- Number of imported polygon areas (zones or regions) saved in a bookmark list, not their surface size. -->
+    <plurals name="areas">
+        <item quantity="other">%d area</item>
+    </plurals>
     <plurals name="tracks">
         <item quantity="one">%d trek</item>
         <item quantity="other">%d trek</item>
@@ -583,6 +596,7 @@
     <string name="button_layer_cycling">Bersepeda</string>
     <!-- Map layers menu: toggle button for the satellite imagery layer -->
     <string name="button_layer_satellite">Satelit</string>
+    <!-- Subway map layer button; also the spoken name of the subway (metro, underground) transport type, read by screen readers before a line number on transit line badges. -->
     <string name="button_layer_subway">Kereta bawah tanah</string>
     <string name="layers_title">Gaya dan Lapisan Peta</string>
     <string name="bookmarks_empty_list_title">Daftar ini kosong</string>
@@ -624,7 +638,7 @@
     <string name="routing_options_driving">Mengemudi</string>
     <!-- Cycling profile in routing options settings. -->
     <string name="routing_options_cycling">Bersepeda</string>
-    <!-- Walking profile in routing options settings. -->
+    <!-- Walking profile in routing options settings; also the label of a walking leg in transit route details. -->
     <string name="routing_options_walking">Berjalan kaki</string>
     <!-- Section heading for routing settings shared by every routing mode. -->
     <string name="routing_options_all_modes">Semua moda perjalanan</string>
@@ -816,6 +830,10 @@
     <string name="outdoor_seating">Tempat duduk di luar ruangan</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
     <string name="power_save_dialog_summary">Untuk navigasi yang paling akurat, kami sarankan untuk menonaktifkan mode hemat daya dalam pengaturan baterai ponsel.</string>
+    <!-- Title of the one-time warning about battery optimization when starting track recording on Android. -->
+    <string name="background_recording_warning_title">Peringatan Perekaman Jalur di Latar Belakang</string>
+    <!-- One-time warning when starting track recording on Android. "Never sleeping apps" is a Samsung setting. The Settings button opens Samsung's list when available, with fallbacks to Android battery optimization settings or general settings. -->
+    <string name="background_recording_warning_message">Agar perekaman jalur tidak terhenti saat layar mati, kecualikan Organic Maps dari pengoptimalan baterai. Pada perangkat Samsung, tambahkan aplikasi ini ke daftar “Aplikasi yang tidak pernah tidur”.</string>
     <!-- Prompt to start recording a track. -->
     <string name="start_track_recording">Merekam jalur</string>
     <!-- Prompt for stopping a track recording. -->
@@ -901,4 +919,18 @@
     <string name="track_recording_finish">Selesai</string>
     <!-- Accessibility label for the button that reverses the complete planned route, including intermediate stops. -->
     <string name="reverse_route">Balikkan rute</string>
+    <!-- Title of the transit route details screen, shown when the user taps the public transport summary tile. -->
+    <string name="transit_details_title">Detail perjalanan</string>
+    <!-- Heading for a user-added intermediate point (Add Stop) in the transit details breakdown (%1$d = its order in the route, starting at 1). -->
+    <string name="transit_waypoint_label">Perhentian %1$d</string>
+    <!-- Number of stops ridden on a single transit line. -->
+    <plurals name="transit_stops_count">
+        <item quantity="other">%d pemberhentian</item>
+    </plurals>
+    <!-- Spoken name of the bus transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_bus">Bus</string>
+    <!-- Spoken name of the train transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_train">Kereta</string>
+    <!-- Spoken name of the tram (streetcar) transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_tram">Trem</string>
 </resources>

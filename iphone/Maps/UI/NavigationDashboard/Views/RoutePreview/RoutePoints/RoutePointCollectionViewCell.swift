@@ -61,7 +61,7 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
 
   override var isHighlighted: Bool {
     didSet {
-      contentBackgroundView.backgroundColor = isHighlighted ? .lightGray : .pressBackground
+      contentBackgroundView.backgroundColor = isHighlighted ? .routePointHighlightedBackground : .pressBackground
     }
   }
 
@@ -99,7 +99,8 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
     clipsToBounds = false
     contentView.clipsToBounds = false
 
-    contentBackgroundView.setStyle(.pressBackground)
+    // Assign the dynamic background directly to preserve the highlight when themes are reapplied.
+    contentBackgroundView.backgroundColor = .pressBackground
     contentBackgroundView.layer.setCornerRadius(.buttonDefaultBig)
     contentBackgroundView.clipsToBounds = false
     connectorLayer.masksToBounds = true
@@ -118,6 +119,7 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
 
     closeButton.setImage(UIImage(resource: .icSearchClear), for: .normal)
     closeButton.setStyle(.gray)
+    closeButton.accessibilityLabel = L("placepage_remove_stop")
     closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
   }
 

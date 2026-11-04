@@ -2,7 +2,7 @@
 
 Organic Maps (OM) is an open-source, privacy-focused offline maps & GPS app built on OpenStreetMap data.
 OM works on iOS, Android, and desktop (Windows, macOS, Linux using Qt 6).
-The codebase is mostly C++23 with platform-specific code in Swift 5, Objective-C/C++, Java 17 and tools in bash and Python 3.10+
+The codebase is mostly C++23 with platform-specific code in Swift 5, Objective-C/C++, Java 17 and tools in bash and Python 3.11+
 
 ## Architecture overview
 
@@ -149,14 +149,16 @@ Format: `[subsystem] Summary in imperative mood` (max 80 chars). Examples of sub
 
 ## Pull requests
 - Prefer PRs focused and small; split unrelated changes into separate PRs, or at least separate commits with clear messages
-- Mention if LLM tools were used to generate code
-- Description must be brief and include: what changed, link to issue (`Fixes #NNN`), how it was tested
-- Every commit must compile on all platforms and pass tests
+- Mention if LLM tools were used to generate code, include model name and effort level
+- Description must be brief (don't wrap markdown) and include: what changed, link to issue (`Fixes #NNN` or `Related #NNN`), how it was tested
+- Label the PR properly if permissions allow it
+- Every commit must compile on all platforms and pass tests; exceptions are possible for easier code review, if PR will be squashed, or for android using string ids before strings regenerated commit
 - New features require tests in the same PR
 - Test on multiple OS versions, themes (light/dark), orientations where applicable
 - See [docs/PR_GUIDE.md](docs/PR_GUIDE.md) for full guide
 
 ## Main focus
+- Follow the [Android SDK ownership and release policy](android/sdk/README.md#sdk-release-consumer-checks) when changing the SDK or its CI
 - On performance, simplicity, regressions, impact and code quality
 - Tests covering most/all corner cases or changes
 - Less code/cleaner code/less changes

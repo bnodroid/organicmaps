@@ -15,7 +15,7 @@
     <string name="downloading">S’està baixant…</string>
     <!-- Choose measurement on first launch alert - choose metric system button -->
     <string name="kilometres">Quilòmetres</string>
-    <!-- Choose measurement on first launch alert - choose imperial system button -->
+    <!-- Imperial measurement option: 1 mile = 1609.344 m; Swedish/Norwegian "mil" = 10 km -->
     <string name="miles">Milles</string>
     <!-- Update maps later button text -->
     <string name="later">Més tard</string>
@@ -343,6 +343,10 @@
     <!-- The message when user did not find anything in the search. -->
     <string name="search_not_found_query">Baixeu la regió on esteu cercant o proveu d\'afegir un nom de ciutat o poble proper.</string>
     <string name="search_history_title">Historial de cerca</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_title">Còpia de seguretat de marcadors i recorreguts</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_description">Els marcadors i recorreguts es poden incloure a les còpies de seguretat del sistema Android si la còpia de seguretat està activada en aquest dispositiu i no superen el seu límit de mida.</string>
     <string name="search_history_text">Mostra les cerques recents.</string>
     <string name="clear_search">Neteja l’historial de cerques</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
@@ -472,10 +476,15 @@
     <string name="current_location_unknown_error_title">Es desconeix la ubicació actual.</string>
     <!-- abbreviation for kilometers per hour -->
     <string name="kilometers_per_hour">km/h</string>
+    <!-- Short label for miles per hour (1 mile = 1609.344 m), placed after a number; e.g. mph or mi/h -->
     <string name="miles_per_hour">mph</string>
+    <!-- Short label for hours (time unit), placed after a number -->
     <string name="hour">h</string>
+    <!-- Short label for minutes (time unit), placed after a number -->
     <string name="minute">min</string>
+    <!-- Short label for days (time unit), placed after a number -->
     <string name="day">d</string>
+    <!-- Short label for seconds (time unit), placed after a number -->
     <string name="second">s</string>
     <string name="placepage_more_button">Més</string>
     <!-- Toolbar title of the Edit Bookmark screen. -->
@@ -574,6 +583,12 @@
         <item quantity="other">S’han trobat %d fitxers. Podreu veure’ls després de la conversió.</item>
     </plurals>
     <string name="restore">Restaura</string>
+    <!-- Number of imported polygon areas (zones or regions) saved in a bookmark list, not their surface size. -->
+    <plurals name="areas">
+        <item quantity="one">%d àrea</item>
+        <item quantity="many">%d d’àrees</item>
+        <item quantity="other">%d àrees</item>
+    </plurals>
     <plurals name="tracks">
         <item quantity="zero">%d recorreguts</item>
         <item quantity="one">%d recorregut</item>
@@ -591,6 +606,7 @@
     <string name="button_layer_cycling">Ciclisme</string>
     <!-- Map layers menu: toggle button for the satellite imagery layer -->
     <string name="button_layer_satellite">Satèl·lit</string>
+    <!-- Subway map layer button; also the spoken name of the subway (metro, underground) transport type, read by screen readers before a line number on transit line badges. -->
     <string name="button_layer_subway">Metro</string>
     <string name="layers_title">Estils i capes del mapa</string>
     <string name="bookmarks_empty_list_title">Aquesta llista és buida</string>
@@ -632,7 +648,7 @@
     <string name="routing_options_driving">En cotxe</string>
     <!-- Cycling profile in routing options settings. -->
     <string name="routing_options_cycling">En bicicleta</string>
-    <!-- Walking profile in routing options settings. -->
+    <!-- Walking profile in routing options settings; also the label of a walking leg in transit route details. -->
     <string name="routing_options_walking">A peu</string>
     <!-- Section heading for routing settings shared by every routing mode. -->
     <string name="routing_options_all_modes">Tots els modes de desplaçament</string>
@@ -832,6 +848,10 @@
     <string name="outdoor_seating">Seients a l\'aire lliure</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
     <string name="power_save_dialog_summary">Per a una navegació més precisa, recomanem desactivar el mode d\'estalvi d\'energia a la configuració de la bateria del telèfon.</string>
+    <!-- Title of the one-time warning about battery optimization when starting track recording on Android. -->
+    <string name="background_recording_warning_title">Alerta d\'enregistrament en segon pla</string>
+    <!-- One-time warning when starting track recording on Android. "Never sleeping apps" is a Samsung setting. The Settings button opens Samsung's list when available, with fallbacks to Android battery optimization settings or general settings. -->
+    <string name="background_recording_warning_message">Per evitar que l\'enregistrament de la ruta s\'aturi quan la pantalla està apagada, si us plau, excloeu Organic Maps de l\'optimització de la bateria. Als dispositius Samsung, afegiu-lo a la llista \"Aplicacions que no s\'adormen mai\".</string>
     <!-- Prompt to start recording a track. -->
     <string name="start_track_recording">Enregistra el recorregut</string>
     <!-- Prompt for stopping a track recording. -->
@@ -923,4 +943,19 @@
     <string name="track_recording_finish">Finalitza</string>
     <!-- Accessibility label for the button that reverses the complete planned route, including intermediate stops. -->
     <string name="reverse_route">Inverteix la ruta</string>
+    <!-- Title of the transit route details screen, shown when the user taps the public transport summary tile. -->
+    <string name="transit_details_title">Detalls del trajecte</string>
+    <!-- Heading for a user-added intermediate point (Add Stop) in the transit details breakdown (%1$d = its order in the route, starting at 1). -->
+    <string name="transit_waypoint_label">Parada %1$d</string>
+    <!-- Number of stops ridden on a single transit line. -->
+    <plurals name="transit_stops_count">
+        <item quantity="one">%d parada</item>
+        <item quantity="other">%d parades</item>
+    </plurals>
+    <!-- Spoken name of the bus transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_bus">Autobús</string>
+    <!-- Spoken name of the train transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_train">Tren</string>
+    <!-- Spoken name of the tram (streetcar) transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_tram">Tramvia</string>
 </resources>

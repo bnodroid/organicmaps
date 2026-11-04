@@ -1323,6 +1323,40 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Translations)
   TEST_EQUAL(name, "Париж", (params));
 }
 
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_NameNorwegianBokmal)
+{
+  struct TestCase
+  {
+    Tags m_tags;
+    std::string m_expected;
+  };
+  std::vector<TestCase> const testCases = {
+      {{{"name:nb", "Bokmål"}}, "Bokmål"},
+      {{{"name:no", "Norsk"}}, "Norsk"},
+      {{{"name:no", "Norsk"}, {"name:nb", "Bokmål"}}, "Bokmål"},
+      {{{"name:nb", "Bokmål"}, {"name:no", "Norsk"}}, "Bokmål"},
+      {{{"name:no", "Norsk"}, {"name:nb", ""}}, "Norsk"},
+      {{{"name:nb", ""}, {"name:no", "Norsk"}}, "Norsk"},
+      {{{"name:no", ""}, {"name:nb", "Bokmål"}}, "Bokmål"},
+      {{{"name:nb", "Bokmål"}, {"name:nn", "Nynorsk"}, {"name:nb:pronunciation", "ignored"}}, "Bokmål"},
+  };
+  for (auto const & testCase : testCases)
+  {
+    Tags tags = {{"place", "city"}, {"name", "Local name"}};
+    tags.insert(tags.end(), testCase.m_tags.begin(), testCase.m_tags.end());
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.name.GetDefaultString(), "Local name", (tags));
+    TEST_EQUAL(params.name.CountLangs(), 2, (tags));
+    std::string_view name;
+    TEST(params.name.GetString(40, name), (tags));
+    TEST_EQUAL(name, testCase.m_expected, (tags));
+    TEST(params.name.GetString("nb", name), (tags));
+    TEST_EQUAL(name, testCase.m_expected, (tags));
+    TEST(!params.name.GetString("nn", name), (tags));
+  }
+}
+
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Cuisine)
 {
   {
@@ -2379,6 +2413,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"craft", "sawmill"},
       {"craft", "shoemaker"},
       {"craft", "tailor"},
+      {"craft", "window_construction"},
       {"craft", "winery"},
       {"cuisine", "african"},
       {"cuisine", "american"},
@@ -2593,6 +2628,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"man_made", "lighthouse"},
       {"man_made", "petroleum_well"},
       {"man_made", "pier"},
+      {"man_made", "reservoir_covered"},
       {"man_made", "survey_point"},
       {"man_made", "silo"},
       {"man_made", "storage_tank"},
@@ -2601,6 +2637,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"man_made", "water_tap"},
       {"man_made", "water_tower"},
       {"man_made", "water_well"},
+      {"man_made", "water_works"},
       {"man_made", "windmill"},
       {"man_made", "works"},
       {"natural", "arch"},
@@ -2791,6 +2828,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"sport", "multi"},
       {"sport", "netball"},
       {"sport", "pickleball"},
+      {"sport", "pilates"},
       {"sport", "rugby_union"},
       {"sport", "running"},
       {"sport", "scuba_diving"},
@@ -3152,6 +3190,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
       {{"shop", "clothes", "underwear"}, {{"shop", "clothes"}, {"clothes", "underwear"}}},
       {{"shop", "clothes", "wedding"}, {{"shop", "clothes"}, {"clothes", "wedding"}}},
       {{"shop", "clothes", "women"}, {{"shop", "clothes"}, {"clothes", "women"}}},
+      {{"shop", "hairdresser", "barber"}, {{"shop", "hairdresser"}, {"hairdresser", "barber"}}},
       {{"shop"}, {{"shop", "any_value"}}},
       {{"sport", "boules"}, {{"sport", "boules"}}},
       {{"sport", "boules"}, {{"sport", "petanque"}}},

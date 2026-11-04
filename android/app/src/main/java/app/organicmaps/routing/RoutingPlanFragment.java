@@ -62,7 +62,7 @@ public class RoutingPlanFragment extends Fragment implements View.OnLayoutChange
   private int mTopInset;
   private boolean mRoutingContentActive = true;
 
-  // Single source of truth for the sheet's visibility: planning wants it AND no place page is covering it.
+  // Show the requested planner sheet only when no place page, search, or point chooser covers it.
   private final MediatorLiveData<Boolean> mSheetVisible = new MediatorLiveData<>();
   private final Observer<Integer> mMenuUpdateObserver = trigger -> updateMenuInternal();
   private final Observer<int[]> mBuildProgressObserver = progress ->
@@ -120,8 +120,7 @@ public class RoutingPlanFragment extends Fragment implements View.OnLayoutChange
     mDrivingOptionsBadge = mChartPanel.findViewById(R.id.driving_options_badge);
     mDrivingOptionsBtn = mChartPanel.findViewById(R.id.driving_options_btn_img);
     mDrivingOptionsContainer = mChartPanel.findViewById(R.id.driving_options_btn_container);
-    mDrivingOptionsBtn.setOnClickListener(
-        v -> DrivingOptionsActivity.start(requireActivity(), RoutingController.get().getLastRouterType()));
+    mDrivingOptionsBtn.setOnClickListener(v -> DrivingOptionsActivity.start(requireActivity()));
     mReverseRouteBtn = mChartPanel.findViewById(R.id.reverse_route_btn);
     mReverseRouteBtn.setOnClickListener(v -> RoutingController.get().reverseRoute());
 
@@ -291,10 +290,19 @@ public class RoutingPlanFragment extends Fragment implements View.OnLayoutChange
     // Peek excludes the scrollable steps/list: it ends at the steps' top (or the full header when there are
     // none), while setMaxHeight caps a long list to scroll inside the sheet instead of covering the map.
     final boolean stepsVisible = mTransitStepsView.getVisibility() == View.VISIBLE;
-    final int chartHeader = stepsVisible ? mTransitStepsView.getTop() : mChartPanel.getHeight();
+    final int chartHeader = stepsVisible ? getTransitStepsTop() : mChartPanel.getHeight();
     final int peekHeight =
         mRoutingTypesContainer.getHeight() + chartHeader + mBottomButtonsMaxHeight + mPeekHeightMargins;
     mSheetBehavior.setPeekHeight(peekHeight);
+  }
+
+  // The steps are nested in the transit summary tile, so their top is relative to it, not to the chart panel.
+  private int getTransitStepsTop()
+  {
+    int top = mTransitStepsView.getTop();
+    for (View v = (View) mTransitStepsView.getParent(); v != mChartPanel; v = (View) v.getParent())
+      top += v.getTop();
+    return top;
   }
 
   private void setupRouterButtons()
@@ -450,10 +458,7 @@ public class RoutingPlanFragment extends Fragment implements View.OnLayoutChange
     new MaterialAlertDialogBuilder(requireContext(), R.style.MwmTheme_AlertDialog)
         .setTitle(R.string.unable_to_calc_alert_title)
         .setMessage(R.string.unable_to_calc_alert_subtitle)
-        .setPositiveButton(
-            R.string.settings,
-            (dialog,
-             which) -> DrivingOptionsActivity.start(requireActivity(), RoutingController.get().getLastRouterType()))
+        .setPositiveButton(R.string.settings, (dialog, which) -> DrivingOptionsActivity.start(requireActivity()))
         .setNegativeButton(R.string.cancel, null)
         .show();
   }

@@ -15,7 +15,7 @@
     <string name="downloading">डाउनलोड करत आहे…</string>
     <!-- Choose measurement on first launch alert - choose metric system button -->
     <string name="kilometres">किलोमीटर</string>
-    <!-- Choose measurement on first launch alert - choose imperial system button -->
+    <!-- Imperial measurement option: 1 mile = 1609.344 m; Swedish/Norwegian "mil" = 10 km -->
     <string name="miles">मैल</string>
     <!-- Update maps later button text -->
     <string name="later">नंतर</string>
@@ -343,6 +343,10 @@
     <!-- The message when user did not find anything in the search. -->
     <string name="search_not_found_query">तुम्ही जिथे शोधत आहात तो प्रदेश डाउनलोड करा किंवा जवळच्या शहर/गावाचे नाव जोडण्याचा प्रयत्न करा.</string>
     <string name="search_history_title">शोध इतिहास</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_title">खूणपत्रे आणि ट्रॅकचा बॅकअप</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_description">या डिव्हाइसवर बॅकअप सुरू असल्यास आणि खूणपत्रे व ट्रॅक त्याच्या आकार मर्यादेपेक्षा जास्त नसल्यास, ते Android सिस्टम बॅकअपमध्ये समाविष्ट केले जाऊ शकतात.</string>
     <string name="search_history_text">अलीकडील शोध पहा.</string>
     <string name="clear_search">शोध इतिहास पुसून टाका</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
@@ -472,10 +476,15 @@
     <string name="current_location_unknown_error_title">वर्तमान स्थान अज्ञात आहे.</string>
     <!-- abbreviation for kilometers per hour -->
     <string name="kilometers_per_hour">km/h</string>
+    <!-- Short label for miles per hour (1 mile = 1609.344 m), placed after a number; e.g. mph or mi/h -->
     <string name="miles_per_hour">mph</string>
+    <!-- Short label for hours (time unit), placed after a number -->
     <string name="hour">तास</string>
+    <!-- Short label for minutes (time unit), placed after a number -->
     <string name="minute">मिनिट</string>
+    <!-- Short label for days (time unit), placed after a number -->
     <string name="day">दि</string>
+    <!-- Short label for seconds (time unit), placed after a number -->
     <string name="second">सेकंद</string>
     <string name="placepage_more_button">अधिक</string>
     <!-- Toolbar title of the Edit Bookmark screen. -->
@@ -570,6 +579,11 @@
         <item quantity="other">%d फाईली सापडल्या. रूपांतरानंतर तुम्ही त्या पाहू शकता.</item>
     </plurals>
     <string name="restore">पूर्ववत् करा</string>
+    <!-- Number of imported polygon areas (zones or regions) saved in a bookmark list, not their surface size. -->
+    <plurals name="areas">
+        <item quantity="one">%d क्षेत्र</item>
+        <item quantity="other">%d क्षेत्रे</item>
+    </plurals>
     <plurals name="tracks">
         <item quantity="one">%d ट्रॅक</item>
         <item quantity="other">%d ट्रॅक</item>
@@ -585,6 +599,7 @@
     <string name="button_layer_cycling">सायकलिंग</string>
     <!-- Map layers menu: toggle button for the satellite imagery layer -->
     <string name="button_layer_satellite">उपग्रह</string>
+    <!-- Subway map layer button; also the spoken name of the subway (metro, underground) transport type, read by screen readers before a line number on transit line badges. -->
     <string name="button_layer_subway">मेट्रो/भुयारी मार्ग</string>
     <string name="layers_title">नकाशा शैली आणि स्तर</string>
     <string name="bookmarks_empty_list_title">ही यादी रिकामी आहे</string>
@@ -626,7 +641,7 @@
     <string name="routing_options_driving">गाडीने</string>
     <!-- Cycling profile in routing options settings. -->
     <string name="routing_options_cycling">सायकलने</string>
-    <!-- Walking profile in routing options settings. -->
+    <!-- Walking profile in routing options settings; also the label of a walking leg in transit route details. -->
     <string name="routing_options_walking">चालत</string>
     <!-- Section heading for routing settings shared by every routing mode. -->
     <string name="routing_options_all_modes">प्रवासाच्या सर्व पद्धती</string>
@@ -818,6 +833,10 @@
     <string name="outdoor_seating">बाहेरची आसनव्यवस्था</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
     <string name="power_save_dialog_summary">सर्वात अचूक नेव्हिगेशनसाठी, आम्ही फोनच्या बॅटरी सेटिंग्जमध्ये पॉवर सेव्हिंग मोड अक्षम करण्याची शिफारस करतो.</string>
+    <!-- Title of the one-time warning about battery optimization when starting track recording on Android. -->
+    <string name="background_recording_warning_title">पार्श्वभूमीतील ट्रॅक रेकॉर्डिंगबाबत इशारा</string>
+    <!-- One-time warning when starting track recording on Android. "Never sleeping apps" is a Samsung setting. The Settings button opens Samsung's list when available, with fallbacks to Android battery optimization settings or general settings. -->
+    <string name="background_recording_warning_message">स्क्रीन बंद असताना ट्रॅक रेकॉर्डिंग थांबू नये म्हणून Organic Maps अॅपला बॅटरी ऑप्टिमायझेशनमधून वगळा. Samsung डिव्हाइसवर ते “कधीही स्लीप मोडमध्ये न जाणारे अॅप्स” या यादीत जोडा.</string>
     <!-- Prompt to start recording a track. -->
     <string name="start_track_recording">ट्रॅक रेकॉर्ड करा</string>
     <!-- Prompt for stopping a track recording. -->
@@ -905,4 +924,19 @@
     <string name="track_recording_finish">समाप्त करा</string>
     <!-- Accessibility label for the button that reverses the complete planned route, including intermediate stops. -->
     <string name="reverse_route">मार्ग उलटा करा</string>
+    <!-- Title of the transit route details screen, shown when the user taps the public transport summary tile. -->
+    <string name="transit_details_title">प्रवासाचे तपशील</string>
+    <!-- Heading for a user-added intermediate point (Add Stop) in the transit details breakdown (%1$d = its order in the route, starting at 1). -->
+    <string name="transit_waypoint_label">स्टॉप %1$d</string>
+    <!-- Number of stops ridden on a single transit line. -->
+    <plurals name="transit_stops_count">
+        <item quantity="one">%d स्टॉप</item>
+        <item quantity="other">%d स्टॉप</item>
+    </plurals>
+    <!-- Spoken name of the bus transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_bus">बस</string>
+    <!-- Spoken name of the train transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_train">ट्रेन</string>
+    <!-- Spoken name of the tram (streetcar) transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_tram">ट्राम</string>
 </resources>

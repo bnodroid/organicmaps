@@ -217,7 +217,9 @@ final class BookmarksListPresenter {
       })
     }
     moreItems.append(exportMenuItem(for: .kml))
-    moreItems.append(exportMenuItem(for: .gpx))
+    if bookmarkGroup.areaCount == 0 {
+      moreItems.append(exportMenuItem(for: .gpx))
+    }
     moreItems.append(exportMenuItem(for: .geoJson))
     moreItems.append(BookmarksListMenuItem(title: L("delete_list"),
                                            destructive: true,

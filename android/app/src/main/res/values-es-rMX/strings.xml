@@ -173,6 +173,10 @@
     <!-- The message when user did not find anything in the search. -->
     <string name="search_not_found_query">Descargue la región en la que está buscando o pruebe a añadir el nombre de una ciudad o pueblo cercano.</string>
     <string name="search_history_title">Historial de búsqueda</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_title">Respaldo de marcadores y pistas</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_description">Los marcadores y pistas pueden incluirse en los respaldos del sistema Android si el respaldo está activado en este dispositivo y no superan su límite de tamaño.</string>
     <string name="search_history_text">Ver tus búsquedas recientes.</string>
     <string name="clear_search">Eliminar el historial de búsqueda</string>
     <string name="p2p_your_location">Tu ubicación</string>
@@ -447,6 +451,8 @@
     <string name="select_option">Seleccionar opción</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
     <string name="power_save_dialog_summary">Para una navegación más precisa, recomendamos desactivar el modo de ahorro de energía en los ajustes de la batería del teléfono.</string>
+    <!-- One-time warning when starting track recording on Android. "Never sleeping apps" is a Samsung setting. The Settings button opens Samsung's list when available, with fallbacks to Android battery optimization settings or general settings. -->
+    <string name="background_recording_warning_message">Para evitar que la grabación del trayecto se detenga cuando la pantalla esté apagada, excluye Organic Maps de la optimización de la batería. En los dispositivos Samsung, agrega la aplicación a la lista “Aplicaciones sin autosuspensión”.</string>
     <!-- Prompt for stopping a track recording. -->
     <string name="stop_track_recording">Detener grabación de pista</string>
     <!-- Subtitle of the place page of the track being recorded, and the name and title of the home screen widget. -->

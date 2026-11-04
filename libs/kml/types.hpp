@@ -1,5 +1,6 @@
 #pragma once
 
+#include "kml/area_data.hpp"
 #include "kml/type_utils.hpp"
 
 #include "coding/point_coding.hpp"
@@ -456,6 +457,26 @@ struct MultiGeometry
   size_t GetNumberOfLinesWithTimestamps() const;
 };
 
+// Intermediate route stop. KML preserves it; GPX imports named rtepts and exports waypoints,
+// and GeoJSON exports Point features.
+struct TrackStopData
+{
+  // This visitor is used for debug output only, it is not tied to any binary (KMB) layout.
+  DECLARE_VISITOR_AND_DEBUG_PRINT(TrackStopData, visitor(m_point, "point"), visitor(m_name, "name"))
+
+  bool operator==(TrackStopData const & data) const
+  {
+    return m_point.EqualDxDy(data.m_point, kMwmPointAccuracy) && m_name == data.m_name;
+  }
+
+  bool operator!=(TrackStopData const & data) const { return !operator==(data); }
+
+  // Coordinates in mercator, on or near the track line.
+  m2::PointD m_point;
+  // Stop's name in the default language (route mark titles and GPX rtept names are plain strings).
+  std::string m_name;
+};
+
 struct TrackData
 {
   DECLARE_VISITOR_AND_DEBUG_PRINT(TrackData, visitor(m_id, "id"), visitor(m_localId, "localId"),
@@ -472,7 +493,8 @@ struct TrackData
     return m_id == data.m_id && m_localId == data.m_localId && m_name == data.m_name &&
            m_description == data.m_description && m_layers == data.m_layers && IsEqual(m_timestamp, data.m_timestamp) &&
            m_geometry == data.m_geometry && m_visible == data.m_visible &&
-           m_nearestToponyms == data.m_nearestToponyms && m_properties == data.m_properties;
+           m_nearestToponyms == data.m_nearestToponyms && m_properties == data.m_properties &&
+           m_stops == data.m_stops && m_routerType == data.m_routerType;
   }
 
   bool operator!=(TrackData const & data) const { return !operator==(data); }
@@ -496,6 +518,13 @@ struct TrackData
   std::vector<std::string> m_nearestToponyms;
   // Key-value properties.
   Properties m_properties;
+
+  // Excluded from the visitor to preserve the KMB V9 layout; KML text retains both fields.
+
+  // Ordered intermediate route stops; geometry represents the endpoints.
+  std::vector<TrackStopData> m_stops;
+  // Routing profile (see routing::ToString(RouterType)), or empty when unknown.
+  std::string m_routerType;
 };
 
 // Make a copy of this structure in a file types_v<n>.hpp
@@ -570,12 +599,12 @@ struct CategoryData
 struct FileData
 {
   DECLARE_VISITOR_AND_DEBUG_PRINT(FileData, visitor(m_categoryData, "category"), visitor(m_bookmarksData, "bookmarks"),
-                                  visitor(m_tracksData, "tracks"))
+                                  visitor(m_tracksData, "tracks"), visitor(m_areasData, "areas"))
 
   bool operator==(FileData const & data) const
   {
     return m_categoryData == data.m_categoryData && m_bookmarksData == data.m_bookmarksData &&
-           m_tracksData == data.m_tracksData;
+           m_tracksData == data.m_tracksData && m_areasData == data.m_areasData;
   }
 
   bool operator!=(FileData const & data) const { return !operator==(data); }
@@ -588,6 +617,10 @@ struct FileData
   std::vector<BookmarkData> m_bookmarksData;
   // Tracks collection.
   std::vector<TrackData> m_tracksData;
+  // Polygon areas are persisted as KML; the KMB and GPX writers reject them.
+  std::vector<AreaData> m_areasData;
+
+  bool HasContent() const { return !m_bookmarksData.empty() || !m_tracksData.empty() || !m_areasData.empty(); }
 };
 
 void SetBookmarksMinZoom(FileData & fileData, double countPerTile, int maxZoom);

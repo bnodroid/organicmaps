@@ -9,7 +9,7 @@ on:
         type: string
 
 env:
-  JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64  # Java 17 is required for Android Gradle 8 plugin
+  JAVA_HOME: /usr/lib/jvm/temurin-21-jdk-amd64  # Java 21 is required by Android Gradle plugin lint
 
 jobs:
   android-sdk-release:
@@ -43,6 +43,14 @@ jobs:
       - name: Set up SDK
         shell: bash
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+
+      - name: Verify native libraries in the AAR are stripped
+        shell: bash
+        working-directory: android
+        run: |
+          # AGP must strip native debug symbols before publishing to Maven Central.
+          ./gradlew :sdk:bundleReleaseAar
+          bash ../.github/scripts/check-sdk-aar.sh sdk/build/outputs/aar/sdk-release.aar
 
       - name: Build and deploy the Android SDK to Maven Central
         shell: bash

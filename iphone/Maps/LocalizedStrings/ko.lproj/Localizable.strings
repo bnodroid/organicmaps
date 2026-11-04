@@ -16,7 +16,7 @@
 /* Choose measurement on first launch alert - choose metric system button */
 "kilometres" = "킬로미터";
 
-/* Choose measurement on first launch alert - choose imperial system button */
+/* Imperial measurement option: 1 mile = 1609.344 m; Swedish/Norwegian "mil" = 10 km */
 "miles" = "마일";
 
 /* Update maps later button text */
@@ -598,10 +598,20 @@
 
 /* abbreviation for kilometers per hour */
 "kilometers_per_hour" = "km/h";
+
+/* Short label for miles per hour (1 mile = 1609.344 m), placed after a number; e.g. mph or mi/h */
 "miles_per_hour" = "mph";
+
+/* Short label for hours (time unit), placed after a number */
 "hour" = "h";
+
+/* Short label for minutes (time unit), placed after a number */
 "minute" = "분";
+
+/* Short label for days (time unit), placed after a number */
 "day" = "일";
+
+/* Short label for seconds (time unit), placed after a number */
 "second" = "초";
 "placepage_more_button" = "자세히";
 "placepage_personal_notes_hint" = "개인 메모 (글자 혹은 html)";
@@ -686,6 +696,8 @@
 
 /* Map layers menu: toggle button for the satellite imagery layer */
 "button_layer_satellite" = "위성";
+
+/* Subway map layer button; also the spoken name of the subway (metro, underground) transport type, read by screen readers before a line number on transit line badges. */
 "button_layer_subway" = "지하철";
 "layers_title" = "맵 스타일 및 레이어";
 
@@ -734,7 +746,7 @@
 /* Cycling profile in routing options settings. */
 "routing_options_cycling" = "자전거";
 
-/* Walking profile in routing options settings. */
+/* Walking profile in routing options settings; also the label of a walking leg in transit route details. */
 "routing_options_walking" = "도보";
 
 /* Section heading for routing settings shared by every routing mode. */
@@ -943,9 +955,9 @@
 "transit_not_found" = "이 지역의 지하철 노선 기능이 아직 없습니다";
 "dialog_pedestrian_route_is_long_header" = "지하철 루트가 발견되지 않았습니다";
 "dialog_pedestrian_route_is_long_message" = "지하철역에서 가까운 출발점 또는 종점을 선택하세요";
-"button_layer_isolines" = "지형";
-"isolines_activation_error_dialog" = "지형 레이어를 활성화하고 사용하려면 해당 지역의 지도를 업데이트하거나 다운로드하십시오";
-"isolines_location_error_dialog" = "이 지역의 지형 레이어는 아직 사용할 수 없습니다";
+"button_layer_isolines" = "등고선";
+"isolines_activation_error_dialog" = "등고선을 활성화하려면 이 지역의 지도 데이터를 다운로드해야 합니다.";
+"isolines_location_error_dialog" = "이 지역에서는 아직 등고선을 사용할 수 없습니다.";
 "elevation_profile_ascent" = "올라가기";
 "elevation_profile_descent" = "내려가기";
 "elevation_profile_min_elevation" = "최소 높이";
@@ -1011,7 +1023,7 @@
 "car_continue_in_the_car" = "차량 화면으로 이동";
 
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
-"button_layer_outdoor" = "하이킹";
+"button_layer_outdoor" = "아웃도어";
 
 /* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
 "bookmarks_export" = "모든 북마크 및 트랙 내보내기";
@@ -1158,11 +1170,11 @@
 /* abbreviation for kilometers */
 "km" = "km";
 
-/* abbreviation for mile(s) */
+/* Short label for miles (length unit, 1 mi = 1609.344 m), placed after a number */
 "mi" = "mi";
 
-/* A unit of measure */
-"ft" = "풋";
+/* Short label for feet (1 ft = 0.3048 m), after numbers; local abbreviations and uninflected unit names are allowed */
+"ft" = "ft";
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "경로를 표시하려면 지도를 업데이트해야 합니다.";

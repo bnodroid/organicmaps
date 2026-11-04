@@ -72,7 +72,7 @@ using namespace routing;
     return nil;
 
   auto const altitudesInfo = elevationInfo.CalculateAltitudesInfo(ElevationInfo::kDefThresholdMWM);
-  // A zero vertical range collapses the chart's Y-axis transforms, so suppress the misleading flat preview.
+  // Uniform profiles can be fallback values when elevation data is unavailable.
   if (altitudesInfo.m_maxAltitude == altitudesInfo.m_minAltitude)
     return nil;
 
@@ -283,18 +283,18 @@ using namespace routing;
   return [turnNotifications copy];
 }
 
-+ (void)removePoint:(MWMRoutePoint *)point
-{
-  RouteMarkData pt = point.routeMarkData;
-  GetFramework().GetRoutingManager().RemoveRoutePoint(pt.m_pointType, pt.m_intermediateIndex);
-  [[MWMNavigationDashboardManager sharedManager] onRoutePointsUpdated];
-}
-
 + (void)removePointAndRebuild:(MWMRoutePoint *)point
 {
   if (!point)
     return;
-  [self removePoint:point];
+  if ([self pointsCount] == 1)
+  {
+    [self stopRouting];
+    return;
+  }
+  RouteMarkData pt = point.routeMarkData;
+  GetFramework().GetRoutingManager().RemoveRoutePoint(pt.m_pointType, pt.m_intermediateIndex);
+  [[MWMNavigationDashboardManager sharedManager] onRoutePointsUpdated];
   [self rebuildWithBestRouter:NO];
 }
 

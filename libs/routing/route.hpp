@@ -231,7 +231,7 @@ private:
 
   traffic::SpeedGroup m_traffic = traffic::SpeedGroup::Unknown;
 
-  /// Information needed to display transit segments properly.
+  /// Transit metadata for rendering and physical ride-time interpolation.
   TransitInfoWrapper m_transitInfo;
 
   // List of speed cameras, sorted by segment direction (from start to end).
@@ -348,6 +348,9 @@ public:
 
   void GetAltitudes(geometry::Altitudes & altitudes) const;
   bool HaveAltitudes() const { return m_haveAltitudes; }
+  // Unset for ordinary routes; zero when a geometric track starts without an approach.
+  std::optional<double> GetTrackStartDistanceMeters() const { return m_trackStartDistanceM; }
+  void SetTrackStartDistanceMeters(double distance) { m_trackStartDistanceM = distance; }
   traffic::SpeedGroup GetTraffic(size_t segmentIdx) const;
 
   void GetTurnsForTesting(std::vector<turns::TurnItem> & turns) const;
@@ -393,8 +396,9 @@ protected:
   std::optional<m2::PointD> FindMaxDiffMidpointImpl(DiffFnT const & isDiff) const;
 
   std::vector<RouteSegment> m_routeSegments;
-  // |m_haveAltitudes| is true if and only if all route points have altitude information.
+  // True if every segment's end junction has a valid altitude.
   bool m_haveAltitudes = false;
+  std::optional<double> m_trackStartDistanceM;
 
   // Subroute
   size_t m_currentSubrouteIdx = 0;

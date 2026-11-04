@@ -142,9 +142,11 @@ final class BMCViewController: MWMViewController {
     actionSheet.addAction(UIAlertAction(title: L("export_file"), style: .default, handler: { _ in
       self.shareCategoryFile(at: index, fileType: .kml, anchor: anchor)
     }))
-    actionSheet.addAction(UIAlertAction(title: L("export_file_gpx"), style: .default, handler: { _ in
-      self.shareCategoryFile(at: index, fileType: .gpx, anchor: anchor)
-    }))
+    if category.areaCount == 0 {
+      actionSheet.addAction(UIAlertAction(title: L("export_file_gpx"), style: .default, handler: { _ in
+        self.shareCategoryFile(at: index, fileType: .gpx, anchor: anchor)
+      }))
+    }
     actionSheet.addAction(UIAlertAction(title: L("export_file_geojson"), style: .default, handler: { _ in
       self.shareCategoryFile(at: index, fileType: .geoJson, anchor: anchor)
     }))

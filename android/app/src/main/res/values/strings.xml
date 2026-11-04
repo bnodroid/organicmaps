@@ -15,7 +15,7 @@
     <string name="downloading">Downloading…</string>
     <!-- Choose measurement on first launch alert - choose metric system button -->
     <string name="kilometres">Kilometers</string>
-    <!-- Choose measurement on first launch alert - choose imperial system button -->
+    <!-- Imperial measurement option: 1 mile = 1609.344 m; Swedish/Norwegian "mil" = 10 km -->
     <string name="miles">Miles</string>
     <!-- Update maps later button text -->
     <string name="later">Later</string>
@@ -343,6 +343,10 @@
     <!-- The message when user did not find anything in the search. -->
     <string name="search_not_found_query">Download the region where you are searching or try adding a nearby town/village name.</string>
     <string name="search_history_title">Search History</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_title">Bookmarks and Tracks backup</string>
+    <!-- Tracks are recorded or imported GPS paths. -->
+    <string name="bookmarks_backup_description">Bookmarks and tracks can be included in Android system backups when backup is enabled on this device and they fit within its size limit.</string>
     <string name="search_history_text">View your recent searches.</string>
     <string name="clear_search">Clear Search History</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
@@ -472,10 +476,15 @@
     <string name="current_location_unknown_error_title">Current location is unknown.</string>
     <!-- abbreviation for kilometers per hour -->
     <string name="kilometers_per_hour">km/h</string>
+    <!-- Short label for miles per hour (1 mile = 1609.344 m), placed after a number; e.g. mph or mi/h -->
     <string name="miles_per_hour">mph</string>
+    <!-- Short label for hours (time unit), placed after a number -->
     <string name="hour">h</string>
+    <!-- Short label for minutes (time unit), placed after a number -->
     <string name="minute">min</string>
+    <!-- Short label for days (time unit), placed after a number -->
     <string name="day">d</string>
+    <!-- Short label for seconds (time unit), placed after a number -->
     <string name="second">s</string>
     <string name="placepage_more_button">More</string>
     <!-- Toolbar title of the Edit Bookmark screen. -->
@@ -570,6 +579,11 @@
         <item quantity="other">%d files were found. You can see them after conversion.</item>
     </plurals>
     <string name="restore">Restore</string>
+    <!-- Number of imported polygon areas (zones or regions) saved in a bookmark list, not their surface size. -->
+    <plurals name="areas">
+        <item quantity="one">%d area</item>
+        <item quantity="other">%d areas</item>
+    </plurals>
     <plurals name="tracks">
         <item quantity="one">%d track</item>
         <item quantity="other">%d tracks</item>
@@ -585,6 +599,7 @@
     <string name="button_layer_cycling">Cycling</string>
     <!-- Map layers menu: toggle button for the satellite imagery layer -->
     <string name="button_layer_satellite">Satellite</string>
+    <!-- Subway map layer button; also the spoken name of the subway (metro, underground) transport type, read by screen readers before a line number on transit line badges. -->
     <string name="button_layer_subway">Subway</string>
     <string name="layers_title">Map Styles and Layers</string>
     <string name="bookmarks_empty_list_title">This list is empty</string>
@@ -626,7 +641,7 @@
     <string name="routing_options_driving">Driving</string>
     <!-- Cycling profile in routing options settings. -->
     <string name="routing_options_cycling">Cycling</string>
-    <!-- Walking profile in routing options settings. -->
+    <!-- Walking profile in routing options settings; also the label of a walking leg in transit route details. -->
     <string name="routing_options_walking">Walking</string>
     <!-- Section heading for routing settings shared by every routing mode. -->
     <string name="routing_options_all_modes">All routing modes</string>
@@ -826,6 +841,10 @@
     <string name="outdoor_seating">Outdoor seating</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
     <string name="power_save_dialog_summary">For the most accurate navigation, we recommend disabling power saving mode in phone\'s battery settings.</string>
+    <!-- Title of the one-time warning about battery optimization when starting track recording on Android. -->
+    <string name="background_recording_warning_title">Background Recording Alert</string>
+    <!-- One-time warning when starting track recording on Android. "Never sleeping apps" is a Samsung setting. The Settings button opens Samsung's list when available, with fallbacks to Android battery optimization settings or general settings. -->
+    <string name="background_recording_warning_message">To prevent track recording from stopping when the screen is off, please exclude Organic Maps from battery optimization. On Samsung devices, add it to the \"Never sleeping apps\" list.</string>
     <!-- Prompt to start recording a track. -->
     <string name="start_track_recording">Record Track</string>
     <!-- Prompt for stopping a track recording. -->
@@ -913,4 +932,19 @@
     <string name="track_recording_finish">Finish</string>
     <!-- Accessibility label for the button that reverses the complete planned route, including intermediate stops. -->
     <string name="reverse_route">Reverse route</string>
+    <!-- Title of the transit route details screen, shown when the user taps the public transport summary tile. -->
+    <string name="transit_details_title">Transit details</string>
+    <!-- Heading for a user-added intermediate point (Add Stop) in the transit details breakdown (%1$d = its order in the route, starting at 1). -->
+    <string name="transit_waypoint_label">Stop %1$d</string>
+    <!-- Number of stops ridden on a single transit line. -->
+    <plurals name="transit_stops_count">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
+    <!-- Spoken name of the bus transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_bus">Bus</string>
+    <!-- Spoken name of the train transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_train">Train</string>
+    <!-- Spoken name of the tram (streetcar) transport type, read by screen readers before a line number on transit line badges (route summary and details). -->
+    <string name="transit_type_tram">Tram</string>
 </resources>
