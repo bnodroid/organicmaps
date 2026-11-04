@@ -152,6 +152,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private static final String LAYERS_MENU_ID = "LAYERS_MENU_BOTTOM_SHEET";
 
   private static final String POWER_SAVE_DISCLAIMER_SHOWN = "POWER_SAVE_DISCLAIMER_SHOWN";
+  // Moving farther than this from the start of a "my position" route plan triggers a rebuild on resume.
+  private static final float ROUTE_START_REFRESH_DISTANCE_METERS = 50;
 
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
@@ -1052,6 +1054,32 @@ public class MwmActivity extends BaseMwmFragmentActivity
     MwmApplication.from(this).getSensorHelper().addListener(this);
   }
 
+  /**
+   * A planned route that starts at "my position" keeps the coordinates captured when it was created. If the user has
+   * moved noticeably since then, rebuild it from the current position. Called on every location update, which also
+   * covers the first fix after the activity starts (the saved location may be stale before that).
+   */
+  private void refreshMyPositionRouteStart()
+  {
+    final RoutingController rc = RoutingController.get();
+    // Rebuilding would exit navigation, interrupt a build in progress, or cancel a pending point pick.
+    if (!rc.isPlanning() || rc.isBuilding() || rc.isWaitingPoiPick())
+      return;
+
+    final MapObject start = rc.getStartPoint();
+    if (start == null || !start.isMyPosition())
+      return;
+
+    final MapObject current = MwmApplication.from(this).getLocationHelper().getMyPosition();
+    if (current == null)
+      return;
+
+    final float[] distance = new float[1];
+    Location.distanceBetween(start.getLat(), start.getLon(), current.getLat(), current.getLon(), distance);
+    if (distance[0] >= ROUTE_START_REFRESH_DISTANCE_METERS)
+      rc.setStartPoint(current);
+  }
+
   @Override
   protected void onResumeFragments()
   {
@@ -1652,6 +1680,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onLocationUpdated(@NonNull Location location)
   {
     dismissLocationErrorDialog();
+
+    refreshMyPositionRouteStart();
 
     final RoutingController routing = RoutingController.get();
     if (!routing.isNavigating())
